@@ -1,0 +1,21 @@
+Package: inductive
+Title: Pipe-friendly and consistent framework for frequentist statistics in R
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "Jan Philipp",
+           family = "Nolte",
+           role = c("aut", "cre"),
+           email = "j-phnolte@web.de")
+Description: The package ... 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    broom,
+    effsize
+Suggests:
+    magrittr,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
