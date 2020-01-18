@@ -77,23 +77,24 @@ sta_wilcox <- function(data = NULL, formula = NULL, x = NULL, y = NULL,
 ################
 # Testing
 ################
-# test <- big_five %>% 
+# test <- big_five %>%
 #   sta_wilcox(Extraversion ~ Geschlecht)
 # 
 # test$result
 # test$obj
 # 
-# big_five %>% 
+# big_five %>%
 #   sta_wilcox(Extraversion ~ Neurotizismus)
 # 
-# big_five %>% 
+# big_five %>%
 #   sta_wilcox(x = Extraversion, y = Neurotizismus)
 # 
-# big_five %>% 
+# big_five %>%
 #   sta_wilcox(x = Neurotizismus, y = Extraversion)
 # 
 # wilcox.test(big_five$Extraversion, big_five$Neurotizismus)
 # wilcox.test(Extraversion ~ Geschlecht, data = big_five)
+
 
 
 
