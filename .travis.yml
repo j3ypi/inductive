@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
@@ -22,3 +23,10 @@ env:
   - TRAVIS_CXXFLAGS="-Wall -Wextra -pedantic -Werror"
   - R_REMOTES_NO_ERRORS_FROM_WARNINGS=true
   - _R_CHECK_SYSTEM_CLOCK_=FALSE
+=======
+  before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
+  deploy:
+    provider: script
+    script: Rscript -e 'pkgdown::deploy_site_github()'
+    skip_cleanup: true
+>>>>>>> 220ddcc3f71f76afbaf61100e7e4fe2669fd13e1
