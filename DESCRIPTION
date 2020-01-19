@@ -7,6 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "j-phnolte@web.de")
 Description: The package ...
+Depends: R (>= 3.3.3)
 License: GPL-3
 Encoding: UTF-8
 URL: https://github.com/j3ypi/inductive
