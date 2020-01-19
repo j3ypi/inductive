@@ -1,5 +1,14 @@
+<!-- badges: start -->
+
+[![Build Status](https://travis-ci.org/j3ypi/inductive.svg?branch=master)](https://travis-ci.org/j3ypi/inductive) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/inductive)](https://cran.r-project.org/package=inductive)
+
+<!-- badges: end -->
+
 # inductive
+
 A pipe-friendly and consistent framework for frequentist statistics in R. 
+
+
 
 **Table of contents**
 
@@ -54,26 +63,26 @@ big_five %>%
 
 Example F-test for every personality trait
 
+## Examples
+
 ```{r}
 big_five %>%
 	nest()
 ```
 
-## Examples
-
 ## Roadmap
 
 If you consider contributing please get in touch. 
 
-### Upcoming
+**Upcoming**
 
-- [x] F test: `sta_var()` (Wrapper around `stats::var.test()`)
-- [x] t-test and Welch-test: `sta_t()` (Wrapper around `stats::t.test()`)
-- [x] Wilcoxon test: `sta_wilcoxon()` (Wrapper around `stats::wilcoxon.test()`)
-- [x] Pearson’s and Mcnemars’s $\chi^2$ test: `sta_chisq()` (Wrapper around `stats::chisq.test()` and `stats::mcnemar.test()`)
-- [x] Fisher’s Exact test: `sta_fisher()` (Wrapper around `stats::fisher.test()`)
-- [ ] Linear regression Model (with fixed and/or random effects): `sta_lm()` (Wrapper around `stats::lm()` and `lmerTest::lmer()`)
-- [ ] ANOVA (with and without repeated measures): `sta_anova()` (Wrapper around `stats::aov()` and  `afex::aov_4()`)
+- [x] F test: `sta_var()` 
+- [x] t-test and Welch-test: `sta_t()`
+- [x] Wilcoxon test: `sta_wilcoxon()`
+- [x] Pearson’s and Mcnemars’s $\chi^2$ test: `sta_chisq()`
+- [x] Fisher’s Exact test: `sta_fisher()` 
+- [ ] Linear regression Model (with fixed and/or random effects): `sta_lm()` 
+- [ ] ANOVA (with and without repeated measures): `sta_anova()` 
 - [ ] Correlation: `sta_cor()`
 - [ ] Kolgomorov-Smirnov test: `sta_ks()`
 - [ ] Kruskall-Wallis test: `sta_kruskal()`
@@ -83,12 +92,18 @@ If you consider contributing please get in touch.
 - [ ] Levene test: `sta_levene()`
 - [ ] Reduce internal dependencies
 
-### Eventually
+**Eventually**
 
 - [ ] Generalized linear model: `sta_glm()`
 - [ ] Baseline logit model and proportional odds model: `sta_vglm()`
 
 ## Reference
+
+Bache, S.M. and Wickham, H. (2014). magrittr: A Forward-Pipe Operator for R. R package version 1.5. https://CRAN.R-project.org/package=magrittr
+
+Robinson, D. and Hayes, A. (2019). broom: Convert Statistical Analysis Objects into Tidy Tibbles. R package version 0.5.2. https://CRAN.R-project.org/package=broom
+
+Wickham, H. (2017). tidyverse: Easily Install and Load the 'Tidyverse'. R package version 1.2.1. https://CRAN.R-project.org/package=tidyverse
 
 Wilkinson, G., & Rogers, C. (1973). Symbolic Description of Factorial Models for Analysis of Variance. *Journal of the Royal Statistical Society. Series C (Applied Statistics),* *22*(3), 392-399. doi:10.2307/2346786
 

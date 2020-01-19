@@ -1,14 +1,16 @@
 Package: inductive
-Title: Pipe-friendly and consistent framework for frequentist statistics in R
-Version: 0.0.0.9000
+Title: A pipe-friendly and consistent framework for frequentist statistics in R
+Version: 0.0.0.1000
 Authors@R:
     person(given = "Jan Philipp",
            family = "Nolte",
            role = c("aut", "cre"),
            email = "j-phnolte@web.de")
-Description: The package ... 
+Description: The package ...
 License: GPL-3
 Encoding: UTF-8
+URL: https://github.com/j3ypi/inductive
+BugReports: https://github.com/j3ypi/inductive/issues
 LazyData: true
 Imports:
     broom,
