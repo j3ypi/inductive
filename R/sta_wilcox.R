@@ -1,4 +1,44 @@
-
+#' Wilcoxon Rank Sum and Signed Rank Tests
+#'
+#' Performs one- and two-sample Wilcoxon tests on vectors of data; the latter is also known as ‘Mann-Whitney’ test.
+#' 
+#' @param data an optional matrix or data frame (or similar: see model.frame) containing the variables in the formula formula. By default the variables are taken from environment(formula).
+#' @param formula a formula of the form lhs ~ rhs where lhs is a numeric variable giving the data values and rhs a factor with two levels giving the corresponding groups.
+#' @param x numeric vector of data values. Non-finite (e.g., infinite or missing) values will be omitted.
+#' @param y an optional numeric vector of data values: as with x non-finite values will be omitted.
+#' @param alternative a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less". You can specify just the initial letter.
+#' @param mu a number specifying an optional parameter used to form the null hypothesis. See ‘Details’.
+#' @param paired a logical indicating whether you want a paired test.
+#' @param exact a logical indicating whether an exact p-value should be computed.
+#' @param correct a logical indicating whether to apply continuity correction in the normal approximation for the p-value.
+#' @param conf.int a logical indicating whether a confidence interval should be computed.
+#' @param conf.level confidence level of the interval.
+#' @param obj a logical whether the test object of stats::t.test() should be returned.
+#' @param na.action a function which indicates what should happen when the data contain NAs. Defaults to getOption("na.action").
+#' @param ...	 further arguments to be passed to or from methods. 
+#' 
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#' data(big_five, package = "inductive")
+#' 
+#' res <- big_five %>%
+#'   sta_wilcox(Extraversion ~ Geschlecht)
+#' 
+#' res$result
+#' res$obj
+#' 
+#' big_five %>%
+#'   sta_wilcox(Extraversion ~ Neurotizismus)
+#' 
+#' big_five %>%
+#'   sta_wilcox(x = Extraversion, y = Neurotizismus)
+#' 
+#' big_five %>%
+#'   sta_wilcox(x = Neurotizismus, y = Extraversion)
+#' }
+#' 
+#' @export
 sta_wilcox <- function(data = NULL, formula = NULL, x = NULL, y = NULL, 
                        alternative = c("two.sided", "less", "greater"),
                        mu = 0, paired = FALSE, 
@@ -73,39 +113,3 @@ sta_wilcox <- function(data = NULL, formula = NULL, x = NULL, y = NULL,
          call. = FALSE)
   }
 }
-
-################
-# Testing
-################
-# test <- big_five %>%
-#   sta_wilcox(Extraversion ~ Geschlecht)
-# 
-# test$result
-# test$obj
-# 
-# big_five %>%
-#   sta_wilcox(Extraversion ~ Neurotizismus)
-# 
-# big_five %>%
-#   sta_wilcox(x = Extraversion, y = Neurotizismus)
-# 
-# big_five %>%
-#   sta_wilcox(x = Neurotizismus, y = Extraversion)
-# 
-# wilcox.test(big_five$Extraversion, big_five$Neurotizismus)
-# wilcox.test(Extraversion ~ Geschlecht, data = big_five)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
