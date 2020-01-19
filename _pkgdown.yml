@@ -25,7 +25,7 @@ navbar:
       href: reference/index.html
     articles:
       text: Articles
-      href: articels/index.html
+      href: articles/index.html
     news:
       text: News
       href: news/index.html

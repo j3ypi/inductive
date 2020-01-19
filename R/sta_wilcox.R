@@ -73,7 +73,7 @@ sta_wilcox <- function(data = NULL, formula = NULL, x = NULL, y = NULL,
   # formula wird x und y vorgezogen, falls beides gegeben ist
   
   if (is.factor(x) | is.factor(y)) {
-    test_obj <- wilcox.test(formula = formula, data = data,
+    test_obj <- stats::wilcox.test(formula = formula, data = data,
                             na.action = na.action, 
                             alternative = alternative, 
                             mu = mu, 
@@ -83,7 +83,7 @@ sta_wilcox <- function(data = NULL, formula = NULL, x = NULL, y = NULL,
                             conf.int = conf.int,
                             conf.level = conf.level,...)
   } else {
-    test_obj <- wilcox.test(x = x, y = y, 
+    test_obj <- stats::wilcox.test(x = x, y = y, 
                             alternative = alternative, 
                             mu = mu, 
                             paired = paired, 
