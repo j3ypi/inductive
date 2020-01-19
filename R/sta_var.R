@@ -67,12 +67,12 @@ sta_var <- function(data = NULL, formula = NULL, x = NULL, y = NULL,
   # formula wird x und y vorgezogen, falls beides gegeben ist
   
   if (is.factor(x) | is.factor(y)) {
-    test_obj <- var.test(formula = formula, data = data,
+    test_obj <- stats::var.test(formula = formula, data = data,
                        na.action = na.action, ratio = ratio, 
                        alternative = alternative, 
                        conf.level = conf.level, ...)
   } else {
-    test_obj <- var.test(x = x, y = y, ratio = ratio, 
+    test_obj <- stats::var.test(x = x, y = y, ratio = ratio, 
                        alternative = alternative, 
                        conf.level = conf.level, 
                        na.action = na.action,...)

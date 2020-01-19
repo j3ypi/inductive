@@ -33,11 +33,11 @@ sta_chisq <- function(x = NULL, y = NULL, paired = FALSE, obj = TRUE,
                       simulate.p.value = FALSE, B = 2000) {
   
   if (!paired) {
-    test_obj <- chisq.test(x = x, y = y, correct = correct, 
+    test_obj <- stats::chisq.test(x = x, y = y, correct = correct, 
                            p = p, rescale.p = rescale.p, 
                            simulate.p.value = simulate.p.value, B = B)
   } else if (paired) {
-    test_obj <- mcnemar.test(x = x, y = y, correct = correct)  
+    test_obj <- stats::mcnemar.test(x = x, y = y, correct = correct)  
   } else {
     stop("The paired argument must be either TRUE or FALSE.",
          call. = FALSE)

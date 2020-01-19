@@ -42,7 +42,7 @@ sta_fisher <- function(x, y = NULL, obj = TRUE,
                        conf.int = TRUE, conf.level = 0.95,
                        simulate.p.value = FALSE, B = 2000) {
   
-  test_obj <- fisher.test(x = x, y = y, workspace = workspace, 
+  test_obj <- stats::fisher.test(x = x, y = y, workspace = workspace, 
                           hybrid = hybrid, hybridPars = hybridPars, 
                           control = control, or = or, 
                           alternative = alternative, 

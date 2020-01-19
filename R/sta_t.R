@@ -69,14 +69,14 @@ sta_t <- function(data = NULL, formula = NULL, x = NULL, y = NULL,
   # formula wird x und y vorgezogen, falls beides gegeben ist
   
   if (is.factor(x) | is.factor(y)) {
-    test_obj <- t.test(formula = formula, data = data,
+    test_obj <- stats::t.test(formula = formula, data = data,
                      na.action = na.action, alternative = alternative, 
                      mu = mu, paired = paired, var.equal = var.equal, 
                      conf.level = conf.level,...)
     cohen <- effsize::cohen.d(x ~ y)[["estimate"]]
 
   } else {
-    test_obj <- t.test(x = x, y = y, alternative = alternative, 
+    test_obj <- stats::t.test(x = x, y = y, alternative = alternative, 
                      mu = mu, paired = paired, var.equal = var.equal, 
                      conf.level = conf.level, ...)
     cohen <- effsize::cohen.d(d = x, f = y)[["estimate"]]
