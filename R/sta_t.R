@@ -102,10 +102,10 @@ sta_t <- function(data = NULL, formula = NULL, x = NULL, y = NULL,
     names(ls) <- c("result", "obj")
     ls[["result"]] <- result
     ls[["obj"]] <- test_obj
-    class(ls) <- c("list", "stats")
+    class(ls) <- c("stats", "list")
     ls
   } else if (!obj) {
-    class(result) <- c("data.frame", "stats")
+    class(result) <- c("stats", "data.frame")
     result
   } else {
     stop("The obj argument must be either TRUE or FALSE.",
