@@ -1,6 +1,7 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
+os: linux
 dist: trusty
 cache: packages
 latex: false
@@ -12,6 +13,7 @@ jobs:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github()'
       skip_cleanup: true
+      github-token: $GITHUB_PAT
 
 env:
   global:
