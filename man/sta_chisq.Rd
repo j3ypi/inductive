@@ -4,9 +4,17 @@
 \alias{sta_chisq}
 \title{Pearson's or McNemar's Chi-squared Test for Count Data}
 \usage{
-sta_chisq(x = NULL, y = NULL, paired = FALSE, obj = TRUE,
-  correct = TRUE, p = rep(1/length(x), length(x)), rescale.p = FALSE,
-  simulate.p.value = FALSE, B = 2000)
+sta_chisq(
+  x = NULL,
+  y = NULL,
+  paired = FALSE,
+  obj = TRUE,
+  correct = TRUE,
+  p = rep(1/length(x), length(x)),
+  rescale.p = FALSE,
+  simulate.p.value = FALSE,
+  B = 2000
+)
 }
 \arguments{
 \item{x}{a numeric vector or matrix. x and y can also both be factors.}

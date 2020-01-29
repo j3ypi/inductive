@@ -4,9 +4,18 @@
 \alias{sta_var}
 \title{F Test to Compare Two Variances}
 \usage{
-sta_var(data = NULL, formula = NULL, x = NULL, y = NULL,
-  ratio = 1, alternative = "two.sided", conf.level = 0.95,
-  obj = TRUE, na.action = getOption("na.action"), ...)
+sta_var(
+  data = NULL,
+  formula = NULL,
+  x = NULL,
+  y = NULL,
+  ratio = 1,
+  alternative = "two.sided",
+  conf.level = 0.95,
+  obj = TRUE,
+  na.action = getOption("na.action"),
+  ...
+)
 }
 \arguments{
 \item{data}{an optional matrix or data frame (or similar: see model.frame) containing the variables in the formula formula. By default the variables are taken from environment(formula).}

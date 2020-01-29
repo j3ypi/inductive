@@ -4,11 +4,21 @@
 \alias{sta_fisher}
 \title{Fisher's Exact Test for Count Data}
 \usage{
-sta_fisher(x, y = NULL, obj = TRUE, workspace = 2e+05,
-  hybrid = FALSE, hybridPars = c(expect = 5, percent = 80, Emin = 1),
-  control = list(), or = 1, alternative = "two.sided",
-  conf.int = TRUE, conf.level = 0.95, simulate.p.value = FALSE,
-  B = 2000)
+sta_fisher(
+  x,
+  y = NULL,
+  obj = TRUE,
+  workspace = 2e+05,
+  hybrid = FALSE,
+  hybridPars = c(expect = 5, percent = 80, Emin = 1),
+  control = list(),
+  or = 1,
+  alternative = "two.sided",
+  conf.int = TRUE,
+  conf.level = 0.95,
+  simulate.p.value = FALSE,
+  B = 2000
+)
 }
 \arguments{
 \item{x}{either a two-dimensional contingency table in matrix form, or a factor object.}

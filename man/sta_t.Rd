@@ -4,10 +4,20 @@
 \alias{sta_t}
 \title{Student's t-Test or Welch-Test}
 \usage{
-sta_t(data = NULL, formula = NULL, x = NULL, y = NULL,
-  alternative = "two.sided", mu = 0, paired = FALSE,
-  var.equal = FALSE, conf.level = 0.95, obj = TRUE,
-  na.action = getOption("na.action"), ...)
+sta_t(
+  data = NULL,
+  formula = NULL,
+  x = NULL,
+  y = NULL,
+  alternative = "two.sided",
+  mu = 0,
+  paired = FALSE,
+  var.equal = FALSE,
+  conf.level = 0.95,
+  obj = TRUE,
+  na.action = getOption("na.action"),
+  ...
+)
 }
 \arguments{
 \item{data}{an optional matrix or data frame (or similar: see model.frame) containing the variables in the formula formula. By default the variables are taken from environment(formula).}

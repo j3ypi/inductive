@@ -4,11 +4,22 @@
 \alias{sta_wilcox}
 \title{Wilcoxon Rank Sum and Signed Rank Tests}
 \usage{
-sta_wilcox(data = NULL, formula = NULL, x = NULL, y = NULL,
-  alternative = c("two.sided", "less", "greater"), mu = 0,
-  paired = FALSE, exact = NULL, correct = TRUE, conf.int = FALSE,
-  conf.level = 0.95, obj = TRUE, na.action = getOption("na.action"),
-  ...)
+sta_wilcox(
+  data = NULL,
+  formula = NULL,
+  x = NULL,
+  y = NULL,
+  alternative = c("two.sided", "less", "greater"),
+  mu = 0,
+  paired = FALSE,
+  exact = NULL,
+  correct = TRUE,
+  conf.int = FALSE,
+  conf.level = 0.95,
+  obj = TRUE,
+  na.action = getOption("na.action"),
+  ...
+)
 }
 \arguments{
 \item{data}{an optional matrix or data frame (or similar: see model.frame) containing the variables in the formula formula. By default the variables are taken from environment(formula).}

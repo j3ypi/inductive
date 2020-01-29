@@ -120,11 +120,21 @@
     <p>Performs Fisher's exact test for testing the null of independence of rows and columns in a contingency table with fixed marginals.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sta_fisher</span>(<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>obj</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>workspace</span> <span class='kw'>=</span> <span class='fl'>2e+05</span>,
-  <span class='kw'>hybrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hybridPars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>expect</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>80</span>, <span class='kw'>Emin</span> <span class='kw'>=</span> <span class='fl'>1</span>),
-  <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>or</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"two.sided"</span>,
-  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>)</pre>
+    <pre class="usage"><span class='fu'>sta_fisher</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>obj</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>workspace</span> <span class='kw'>=</span> <span class='fl'>2e+05</span>,
+  <span class='kw'>hybrid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>hybridPars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>expect</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>80</span>, <span class='kw'>Emin</span> <span class='kw'>=</span> <span class='fl'>1</span>),
+  <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>or</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"two.sided"</span>,
+  <span class='kw'>conf.int</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>simulate.p.value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>2000</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
