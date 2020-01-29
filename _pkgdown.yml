@@ -3,6 +3,9 @@ destination: docs
 development:
   mode: auto
 
+template:
+  ganalytics: UA-157292709-1
+
 authors:
   Jan Philipp Nolte:
     url: https://github.com/j3ypi
