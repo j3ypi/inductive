@@ -6,6 +6,11 @@
 \usage{
 \method{print}{stats}(x, ...)
 }
+\arguments{
+\item{x}{The object to be printed.}
+
+\item{...}{further arguments to be passed to or from methods.}
+}
 \description{
 Generic S3 print method for objects of class stats
 }

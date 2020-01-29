@@ -34,7 +34,7 @@ big_five %>%
 
 ```{r}
 big_five %>% 
-  sta_t(Extraversion ~ Neuroticism)
+  sta_t(Extraversion ~ Neuroticism, var.equal = TRUE)
 ```
 
 ```{r, eval=FALSE}
