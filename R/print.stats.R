@@ -1,3 +1,6 @@
+#' Generic S3 print method for objects of class stats
+#' 
+#' @export
 print.stats <- function(x, ...) { 
   options(scipen = 10)
   print(round(x[[1]], 5))  
