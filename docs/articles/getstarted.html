@@ -86,9 +86,11 @@
 <div id="example-of-a-t-test" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example-of-a-t-test" class="anchor"></a>Example of a t-test</h2>
+<p>Before we get started lets load the three packages we need.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(inductive)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(magrittr)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(purrr)</span></code></pre></div>
+<p>Within the <code>inductive</code> package there’s a data set called <a href="https://j3ypi.github.io/inductive/reference/big_five.html">big_five</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(big_five)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -157,25 +159,32 @@
 </tr>
 </tbody>
 </table>
+<p>There three different ways to conduct Student’s t-Test in the inductive package. Note that all the information provided for the t-test can be applied to any other function from the package. Lets say we want to investigate whether there is a difference between the average degree of the <em>big5</em> personality trait extraversion compared to neuroticism. The recommend way of passing those columns to the function is the formula syntax, which is well-known from base R functions like <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> or <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>. Up until now you could only use the formula syntax for a t-test when you have one grouping variable like gender. To conduct a t-test and not a Welch test one has to set the <code>var.equal</code> argument to <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>big_five <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw"><a href="../reference/sta_t.html">sta_t</a></span>(Extraversion <span class="op">~</span><span class="st"> </span>Neuroticism)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt;    t.value       df p.value conf.low conf.high  cohen.d</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; 1 -1.05406 295.4322 0.29272 -0.16342   0.04942 -0.10541</span></span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw"><a href="../reference/sta_t.html">sta_t</a></span>(Extraversion <span class="op">~</span><span class="st"> </span>Neuroticism, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt;    t.value  df p.value conf.low conf.high  cohen.d</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; 1 -1.05406 398  0.2925 -0.16331   0.04931 -0.10541</span></span></code></pre></div>
+<p>The option to use the formula syntax with a grouping variable still exists. The function is more strict though, so that the grouping variable must be a factor and not just a string.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>big_five <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw"><a href="../reference/sta_t.html">sta_t</a></span>(Extraversion <span class="op">~</span><span class="st"> </span>Gender)</span></code></pre></div>
+<p>For those who prefer the known way of passing the columns as <code>x</code> and <code>y</code> separately, this option is included as well.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>big_five <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw"><a href="../reference/sta_t.html">sta_t</a></span>(<span class="dt">x =</span> Extraversion, <span class="dt">y =</span> Neuroticism) </span></code></pre></div>
+<p>Even the way of passing the arguments without a data argument to the function (e.g. with the dollar-operator) works exactly like it does for the corresponding base R functions from the <code>stats</code> package <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="../reference/sta_t.html">sta_t</a></span>(<span class="dt">x =</span> big_five<span class="op">$</span>Extraversion, <span class="dt">y =</span> big_five<span class="op">$</span>Neuroticism)</span></code></pre></div>
 </div>
 <div id="the-obj-argument" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-obj-argument" class="anchor"></a>The obj argument</h2>
+<a href="#the-obj-argument" class="anchor"></a>The <code>obj</code> argument</h2>
+<p>The only thing you see when you conduct a test is the clean result table. But behind the scenes all functions return a list with two elements by default. To illustrate that lets save the results from above to the variable <code>res</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>res &lt;-<span class="st"> </span>big_five <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw"><a href="../reference/sta_t.html">sta_t</a></span>(Extraversion <span class="op">~</span><span class="st"> </span>Neuroticism)</span></code></pre></div>
+<p>No we can inspect those two elements with <code>purrr</code>’s function <code>pluck()</code> where one could either pass numbers (element <code>1</code> or <code>2</code>) or the name of the list elements (<code>result</code>, <code>obj</code>).</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>res <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">pluck</span>(<span class="st">"result"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt;     t.value       df  p.value   conf.low  conf.high    cohen.d</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; 1 -1.054057 295.4322 0.292718 -0.1634245 0.04942449 -0.1054057</span></span></code></pre></div>
+<p>Of course you could also use the dollar-operator or <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> to access those list elements. As you see the object is the usual result from <code>t.test.()</code>. There are certain scenarios when the default output of the <code>obj</code> element comes in handy. For example to conduct post-hoc tests after the calculation of an ANOVA or when you want to return additional fit indices like information criteria from you linear model with <code><a href="https://rdrr.io/pkg/broom/man/reexports.html">broom::glance()</a></code>.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>res <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">pluck</span>(<span class="st">"obj"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt; </span></span>
@@ -189,6 +198,7 @@
 <span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; sample estimates:</span></span>
 <span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; mean of x mean of y </span></span>
 <span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt;     3.076     3.133</span></span></code></pre></div>
+<p>To avoid this behavior and to save the result table exclusively one would only need to set the <code>obj</code> argument to <code>FALSE</code>, which might come in handy when working with <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/nest.html">tidyr::nest()</a></code> or if the objects are extremely large.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>big_five <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw"><a href="../reference/sta_t.html">sta_t</a></span>(Extraversion <span class="op">~</span><span class="st"> </span>Neuroticism, <span class="dt">obj =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt;     t.value       df  p.value   conf.low  conf.high    cohen.d</span></span>
@@ -203,7 +213,7 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#example-of-a-t-test">Example of a t-test</a></li>
-      <li><a href="#the-obj-argument">The obj argument</a></li>
+      <li><a href="#the-obj-argument">The <code>obj</code> argument</a></li>
       </ul>
 </div>
       </div>
