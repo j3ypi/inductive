@@ -83,6 +83,9 @@
 
     
     
+<div id="example-of-a-t-test" class="section level2">
+<h2 class="hasAnchor">
+<a href="#example-of-a-t-test" class="anchor"></a>Example of a t-test</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(inductive)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(big_five)</span></code></pre></div>
@@ -180,6 +183,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>big_five <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw"><a href="../reference/sta_t.html">sta_t</a></span>(<span class="dt">x =</span> Extraversion, <span class="dt">y =</span> Neuroticism) </span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="../reference/sta_t.html">sta_t</a></span>(<span class="dt">x =</span> big_five<span class="op">$</span>Extraversion, <span class="dt">y =</span> big_five<span class="op">$</span>Neuroticism)</span></code></pre></div>
+</div>
 <div id="the-obj-argument" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-obj-argument" class="anchor"></a>The obj argument</h2>
@@ -215,7 +219,8 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#the-obj-argument">The obj argument</a></li>
+<li><a href="#example-of-a-t-test">Example of a t-test</a></li>
+      <li><a href="#the-obj-argument">The obj argument</a></li>
       </ul>
 </div>
       </div>

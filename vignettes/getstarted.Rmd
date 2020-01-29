@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Example of a t-test
+
 ```{r setup, message=FALSE, warning=FALSE}
 library(inductive)
 library(tidyverse)
