@@ -1,7 +1,7 @@
 ## To Do 
 
 - [x] Abstract schreiben
-- [ ] Datensatz zum Testen integrieren
+- [x] Datensatz zum Testen integrieren
 - [ ] Website 
   - [x] Website mit pkgdown erstellen
   - [x] Setup .io Website name and connect to github repo
@@ -9,19 +9,19 @@
   - [ ] Verknüpfung mit travis CI **build passing**
   - [ ] finish README.md
   - [ ] Get Started with one thorough example (vignette)
-  - [ ] NEWS file with initial release description
+  - [x] NEWS file with initial release description
   - [ ] Adapt pkgdown theme
   - [ ] Icon and favicon
-- [ ] Package 
+- [x] Package 
   - [x] Package erstellen
   - [x] Funktionen Dokumentieren
-  - [ ] Insert Package description in DESCRIPTION file 
+  - [x] Insert Package description in DESCRIPTION file 
 - [ ] Adapt package documentation 
   - [x] Wilcoxon Test
-  - [ ] Data set
+  - [x] Data set
   - [ ] each function overhaul
 - [ ] Functions
-  - [ ] print method not integrated in package anymore 
+  - [x] print method not integrated in package anymore 
   - [ ] `modify_printing()`
   - [x] F test: `sta_var()` 
   - [x] t-test and Welch-test: `sta_t()`

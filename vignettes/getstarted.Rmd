@@ -14,15 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, message=FALSE}
+```{r setup, message=FALSE, warning=FALSE}
 library(inductive)
 library(tidyverse)
-
-print.stats <- function(x, ...) { 
-  options(scipen = 10)
-  print(round(x[[1]], 5))  
-  on.exit(options(scipen = NA), add = TRUE)
-}
 ```
 
 ```{r}

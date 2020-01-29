@@ -11,6 +11,7 @@ reference:
   - title: Functions
     contents:
     - starts_with("sta")
+    - starts_with("print")
   - title: Data sets
     contents:
     - starts_with("big")

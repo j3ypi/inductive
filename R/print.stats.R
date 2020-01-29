@@ -1,4 +1,4 @@
-#' Generic S3 print method for object of class stats
+#' Generic S3 print method for objects of class stats
 #'
 print.stats <- function(x, ...) { 
   options(scipen = 10)

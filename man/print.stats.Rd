@@ -2,10 +2,10 @@
 % Please edit documentation in R/print.stats.R
 \name{print.stats}
 \alias{print.stats}
-\title{Generic S3 print method for object of class stats}
+\title{Generic S3 print method for objects of class stats}
 \usage{
 \method{print}{stats}(x, ...)
 }
 \description{
-Generic S3 print method for object of class stats
+Generic S3 print method for objects of class stats
 }
