@@ -3,6 +3,10 @@ destination: docs
 development:
   mode: auto
 
+template:
+  params:
+    ganalytics: UA-157292709-1
+
 authors:
   Jan Philipp Nolte:
     url: https://github.com/j3ypi
@@ -26,7 +30,6 @@ navbar:
     right: github
   components:
     home:
-      strip_header: true
       icon: fa-home fa-lg
       href: index.html
     reference:

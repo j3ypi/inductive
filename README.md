@@ -4,6 +4,8 @@
 
 <!-- badges: end -->
 
+## Installation
+
 A pipe-friendly and consistent framework for frequentist statistics in R. Since the package isn’t released on CRAN yet, it has to be downloaded from Github directly.
 
 ```R
