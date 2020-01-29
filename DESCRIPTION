@@ -6,7 +6,7 @@ Authors@R:
            family = "Nolte",
            role = c("aut", "cre"),
            email = "j-phnolte@web.de")
-Description: The package ...
+Description: The inductive package introduces a pipe-friendly and consistent framework for frequentist statistics in R. Because the functions are compatible with the pipe operator, they can be tightly integrated into the tidyverse. The input variables of all functions can be passed through the formula syntax, which was first introduced by Wilkinson & Rogers (1973) while keeping a certain flexibility by allowing the same input as their base R counterparts from the stats package. The functions return a clean table with scientific reporting in mind, containing only the test results as a data.frame and an optional object with the result list of the base R function they are wrapped around. The functions have the same prefix, which enables practical auto-completion within RStudio and hence relief one from the need to memorize the name of each function. Caused by the same functionality within this package, the principles must be learned once and can subsequently be applied to all functions. At the same time, the package lowers the entry level for beginners and provides convenient functions for experienced users as their daily driver.  
 Depends: R (>= 3.3.3)
 License: GPL-3
 Encoding: UTF-8

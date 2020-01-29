@@ -6,17 +6,7 @@
 
 # inductive
 
-A pipe-friendly and consistent framework for frequentist statistics in R. 
-
-
-
-**Table of contents**
-
-**[Installation](#installation)** <br>**[Philosophy](#philosophy)** <br>**[Examples](#examples)** <br>**[Roadmap](#roadmap)** <br>**[Reference](#reference)** <br>
-
-## Installation
-
-Since the package isn’t released on CRAN yet, it has to be downloaded from Github directly.
+A pipe-friendly and consistent framework for frequentist statistics in R. Since the package isn’t released on CRAN yet, it has to be downloaded from Github directly.
 
 ```R
 remotes::install_github("j3ypi/inductive")
@@ -28,9 +18,11 @@ The naming of the functions is inconsistent, too – Some contain the estimate, 
 
 So while some might think the `inductive` package is yet another statistic package which gets the same job done as well-established packages, you shouldn’t forget how you started. R is a great way to introduce students or scientists who have no idea of programming languages or computers – apart from turning them on – to the world of programming and data analysis which is a key skill in all empirical sciences and many other areas. 
 
-## Philosophy 
+## Features 
 
 This package is build on the principle that you should learn the theory once and than apply it to every other scenario. Meaning, if you understand the usage of one statistical test within this package, you won’t have a problem with any other function from the `inductive` package. Behind the scenes it is not about reinventing the wheel but standing on the shoulder of giants instead. Nonetheless, dependencies will be reduced as much as it makes sense over time. 
+
+**Consistent formula syntax.**
 
 The core concept is the formula syntax first introduced by Wilkinson & Rogers (1973), which is best explained on an ordinary regression model. One the left hand side of the formula is the dependent variable and on the right hand side are all the independent variables with potential influence on the dependent variable. Lets pretend one would like to investigate the influence of gender and age on the average manifestation of extroversion – one of the big five personality traits. The formula would look like this:
 
@@ -49,32 +41,24 @@ big_five %>%
 
 to get the same result, while keeping the syntax clean and consistent. Internally, it behaves like `x ~ y`. As you might have noticed
 
-Prefix and adapted documentation
+**Pipe-friendly.**
 
-Only what you asked for and not a thousand tables more.
+**Modified print method.**
 
-Printing and obj argument (generic print method adapted for stats class, rounded numbers, advantage if objects are large)
+- Only what you asked for and not a thousand tables more.
+- Use the tables for further calculations
+- tibbles are bad for scientific documentation (rounding, scientific notation, red p-values indicating negative numbers)
+- Result table + result object returned by the underlying function (optional, dont save obj to save space for large objects)
 
-Example F-test with formula and pipe
+**Prefix for auto-completion.**
 
-```{r}
-big_five %>%
-```
+**Adapted documentation.**
 
-Example F-test for every personality trait
-
-## Examples
-
-```{r}
-big_five %>%
-	nest()
-```
+**All in one.**
 
 ## Roadmap
 
 If you consider contributing please get in touch. 
-
-**Upcoming**
 
 - [x] F test: `sta_var()` 
 - [x] t-test and Welch-test: `sta_t()`
@@ -91,11 +75,6 @@ If you consider contributing please get in touch.
 - [ ] Mauchly test: `sta_mauchly()`
 - [ ] Levene test: `sta_levene()`
 - [ ] Reduce internal dependencies
-
-**Eventually**
-
-- [ ] Generalized linear model: `sta_glm()`
-- [ ] Baseline logit model and proportional odds model: `sta_vglm()`
 
 ## Reference
 

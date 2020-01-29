@@ -7,13 +7,21 @@ authors:
   Jan Philipp Nolte:
     url: https://github.com/j3ypi
 
+reference:
+  - title: Functions
+    contents:
+    - starts_with("sta")
+  - title: Data sets
+    contents:
+    - starts_with("big")
+
 navbar:
   structure:
     left:
     - home
-    - news
     - articles
     - reference
+    - news
     right: github
   components:
     home:
@@ -24,8 +32,8 @@ navbar:
       text: Reference
       href: reference/index.html
     articles:
-      text: Articles
-      href: articles/index.html
+      text: Get started
+      href: articles/getstarted.html
     news:
       text: News
       href: news/index.html

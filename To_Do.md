@@ -1,0 +1,41 @@
+## To Do 
+
+- [x] Abstract schreiben
+- [ ] Datensatz zum Testen integrieren
+- [ ] Website 
+  - [x] Website mit pkgdown erstellen
+  - [x] Setup .io Website name and connect to github repo
+  - [x] Set package status in yaml header to unreleased
+  - [ ] Verknüpfung mit travis CI **build passing**
+  - [ ] finish README.md
+  - [ ] Get Started with one thorough example (vignette)
+  - [ ] NEWS file with initial release description
+  - [ ] Adapt pkgdown theme
+  - [ ] Icon and favicon
+- [ ] Package 
+  - [x] Package erstellen
+  - [x] Funktionen Dokumentieren
+  - [ ] Insert Package description in DESCRIPTION file 
+- [ ] Adapt package documentation 
+  - [x] Wilcoxon Test
+  - [ ] Data set
+  - [ ] each function overhaul
+- [ ] Functions
+  - [ ] print method not integrated in package anymore 
+  - [ ] `modify_printing()`
+  - [x] F test: `sta_var()` 
+  - [x] t-test and Welch-test: `sta_t()`
+  - [x] Wilcoxon test: `sta_wilcoxon()`
+  - [x] Pearson’s and Mcnemars’s $\chi^2$ test: `sta_chisq()`
+  - [x] Fisher’s Exact test: `sta_fisher()` 
+  - [ ] Linear regression Model (with fixed and/or random effects): `sta_lm()` 
+  - [ ] ANOVA (with and without repeated measures): `sta_anova()` 
+  - [ ] Correlation: `sta_cor()`
+  - [ ] Kolgomorov-Smirnov test: `sta_ks()`
+  - [ ] Kruskall-Wallis test: `sta_kruskal()`
+  - [ ] Bartletts test: `sta_bartlett()`
+  - [ ] Shapiro-Wilks test: `sta_shapiro()`
+  - [ ] Mauchly test: `sta_mauchly()`
+  - [ ] Levene test: `sta_levene()`
+  - [ ] Reduce internal dependencies
+

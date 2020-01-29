@@ -1,0 +1,93 @@
+---
+title: "Get started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Philosophy}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE}
+library(inductive)
+library(tidyverse)
+
+print.stats <- function(x, ...) { 
+  options(scipen = 10)
+  print(round(x[[1]], 5))  
+  on.exit(options(scipen = NA), add = TRUE)
+}
+```
+
+```{r}
+data(big_five)
+```
+
+```{r, echo = FALSE}
+big_five %>%  
+  head() %>%  
+  knitr::kable() 
+```
+
+```{r}
+big_five %>% 
+  sta_t(Extraversion ~ Neuroticism)
+```
+
+```{r, eval=FALSE}
+big_five %>% 
+  sta_t(Extraversion ~ Gender)
+```
+
+```{r, eval=FALSE}
+big_five %>% 
+  sta_t(x = Extraversion, y = Neuroticism) 
+```
+
+```{r, eval=FALSE}
+sta_t(x = big_five$Extraversion, y = big_five$Neuroticism)
+```
+
+## The obj argument
+```{r}
+res <- big_five %>% 
+  sta_t(Extraversion ~ Neuroticism)
+```
+
+```{r}
+res %>% 
+  pluck("result")
+```
+
+```{r}
+res %>% 
+  pluck("obj")
+```
+
+```{r}
+big_five %>% 
+  sta_t(Extraversion ~ Neuroticism, obj = FALSE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
