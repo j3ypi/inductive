@@ -18,7 +18,8 @@ knitr::opts_chunk$set(
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(inductive)
-library(tidyverse)
+library(magrittr)
+library(purrr)
 ```
 
 ```{r}
