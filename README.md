@@ -4,57 +4,44 @@
 
 <!-- badges: end -->
 
-# inductive
-
 A pipe-friendly and consistent framework for frequentist statistics in R. Since the package isn’t released on CRAN yet, it has to be downloaded from Github directly.
 
 ```R
 remotes::install_github("j3ypi/inductive")
 ```
 
-Anyone who conducts some kind of statistical tests in R will further or later notice inevitably, that while doing their job just fine, the build in R function for hypothesis tests lack of consistency. Furthermore, the uprising of the packages within the `tidyverse` and those compatible with it (like this package) really shine a light on the inconvenient way the build in R functions work with the pipe the `magrittr` packages provides. Of course, this is not an accusation because a lot of time has passes since the release of the build-in `stats` package. While it is indeed possible to combine those to with a placeholder (`.`) it is neither convenient nor easy so grasp for beginners.
-
-The naming of the functions is inconsistent, too – Some contain the estimate, some the name of the test, some only a part of the name, some an acronym etc. While these functions adopt the naming for familiarity reasons, the functions in this package do all have a prefix (`sta_*`) so that one is able to select the function needed from the suggestions within RStudio, instead of looking it up on the internet each time you haven’t used it for a while. Last but not least, the output printed out from the functions within base R do not provide the possibility for further calculation with the results.  While the `broom` package does offer a solution to this, it’s column naming is too generic for beginners and returns a `tibble` which is practical for a first glance but not for the exact values which a scientist or students needs to report.
-
-So while some might think the `inductive` package is yet another statistic package which gets the same job done as well-established packages, you shouldn’t forget how you started. R is a great way to introduce students or scientists who have no idea of programming languages or computers – apart from turning them on – to the world of programming and data analysis which is a key skill in all empirical sciences and many other areas. 
+Check out [Get Started](https://j3ypi.github.io/inductive/articles/getstarted.html) for concrete examples on how to use the functions of this package. 
 
 ## Features 
 
-This package is build on the principle that you should learn the theory once and than apply it to every other scenario. Meaning, if you understand the usage of one statistical test within this package, you won’t have a problem with any other function from the `inductive` package. Behind the scenes it is not about reinventing the wheel but standing on the shoulder of giants instead. Nonetheless, dependencies will be reduced as much as it makes sense over time. 
+This package is build on the principle that you should learn the theory once and than apply it to every other scenario. Meaning, if you understand the usage of one statistical test within this package, you won’t have a problem with any other function from the `inductive` package, ever. Behind the scenes it is not about reinventing the wheel but standing on the shoulder of giants instead. Nonetheless, dependencies will be reduced as much as it makes sense over time. 
 
-**Consistent formula syntax.**
+**Consistent formula syntax.** The core concept is the formula syntax first introduced by Wilkinson & Rogers (1973), which is best explained on an ordinary regression model. One the left hand side of the formula is the dependent variable and on the right hand side are all the independent variables with potential influence on the dependent variable. Lets pretend one would like to investigate the influence of gender and age on the average manifestation of extroversion – one of the big five personality traits. The formula would look like this:
 
-The core concept is the formula syntax first introduced by Wilkinson & Rogers (1973), which is best explained on an ordinary regression model. One the left hand side of the formula is the dependent variable and on the right hand side are all the independent variables with potential influence on the dependent variable. Lets pretend one would like to investigate the influence of gender and age on the average manifestation of extroversion – one of the big five personality traits. The formula would look like this:
-
-`Extroversion ~ Age + Gender`
+`Extraversion ~ Age + Gender`
 
 The `lme4` package first introduced an extension of this formula syntax by integrating random effects within bracket. For a simple repeated measure, one would write 
 
-`Extroversion ~ Age + Gender + (1 | Person)`. 
+`Extraversion ~ Age + Gender + (1 | Person)`. 
 
-This package adapts those to mechanism and expands them to tests, where only two vectors are compared to each other. Suppose you want to conduct Student’s t-test between extroversion and neuroticism (another personality trait). Up until now, you would have to pass those to variables as vectors. In the `inductive` package one could write 
+This package adapts those to mechanism and expands them to tests, where only two vectors are compared to each other. Suppose you want to conduct Student’s t-test between extroversion and neuroticism (another personality trait). Up until now, you would have to pass those to variables as vectors. Now you can pass them with the formula, which is treated as `x ~ y` compared to documentation the `stats` package where `x` and `y` can be either vectors or a grouping variable. 
+
+`Extraversion ~ Neuroticism`
+
+**Pipe-friendly.** The first argument of each function is the `data` argument, which means that the pipe-operator can pass the data invisible to the function without the need to add this argument manually. 
 
 ```{r}
 big_five %>%
    sta_t(Extraversion ~ Neuroticism)
 ```
 
-to get the same result, while keeping the syntax clean and consistent. Internally, it behaves like `x ~ y`. As you might have noticed
+**Modified print method.** Many additional statistical R packages adapt the approach of propriety software like SPSS where they return a lot of tables you didn’t explicitly asked for, which makes it hard for beginners to understand which table they where looking for and impossible to use the results for continuous calculations. This package takes another approach. The functions only return the result you explicitly asked for. Though the `broom` package follows a similar philosophy it has two disadvantages for beginner-friendly scientific reporting. First, the output is two generic, which means that every estimate is just called `estimate` and second, the output is printed as a `tibble`. While `tibbles` are an awesome invention for most task, it is not optimal if you want to report exact (not rounded) numbers. Another problem is the scientific notation which cannot be disabled. Even for more experiences researchers `3.1E-10` .. is more difficult to read than `0.31`. Additionally, negative numbers (`3.1E-10`) are highlighted in red indicating for example negative *p*-values which might be confusing for students. By default the functions of the `inductive` package return a list with the results and the object created by the base R functions they are wrapped around. But when you print the result only the result table is displayed. If you don’t need the object’s complete result list you can easy disable to output the object (`obj = FALSE`).
 
-**Pipe-friendly.**
+**Prefix for auto-completion.** Who doesn’t know how it is to look up the name of an `stats` function in R for the hundredths time, because the names are inconsistent? The `inductive` package provides a prefix `sta_*` for all functions making it particularly suited for auto-completion and suggestion within RStudio.
 
-**Modified print method.**
+**Adapted documentation.** The documentation is expanded and adapted compared to their base R counterparts, making it easier to understand their arguments and how they can be used in practice. 
 
-- Only what you asked for and not a thousand tables more.
-- Use the tables for further calculations
-- tibbles are bad for scientific documentation (rounding, scientific notation, red p-values indicating negative numbers)
-- Result table + result object returned by the underlying function (optional, dont save obj to save space for large objects)
-
-**Prefix for auto-completion.**
-
-**Adapted documentation.**
-
-**All in one.**
+**All in one.** The resources for the most commonly used functions are now in one place. No need to look it up every time with your favorite search engine. Just type in `sta` to select the functions you want to use.
 
 ## Roadmap
 
