@@ -12,7 +12,7 @@ A pipe-friendly and consistent framework for frequentist statistics in R. The pa
 remotes::install_github("j3ypi/inductive")
 ```
 
-Check out the vignette [Get started](https://j3ypi.github.io/inductive/articles/getstarted.html) for concrete examples on how to use the functions of this package. 
+Check out the vignette [Get started](https://j3ypi.github.io/inductive/articles/getstarted.html) for concrete examples on how to use the functions of this package.  
 
 ## Features 
 
