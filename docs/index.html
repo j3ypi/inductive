@@ -84,33 +84,34 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>A pipe-friendly and consistent framework for frequentist statistics in R. Since the package isn’t released on CRAN yet, it has to be downloaded from Github directly.</p>
+<p>A pipe-friendly and consistent framework for frequentist statistics in R. The package aims to lower the entry level for beginners and provide convenient functions for experienced users as their daily driver. Since the package isn’t released on CRAN yet, the development version needs to be downloaded from Github.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"j3ypi/inductive"</span>)</span></code></pre></div>
-<p>Check out <a href="https://j3ypi.github.io/inductive/articles/getstarted.html">Get Started</a> for concrete examples on how to use the functions of this package.</p>
+<p>Check out the vignette <a href="https://j3ypi.github.io/inductive/articles/getstarted.html">Get Started</a> for concrete examples on how to use the functions of this package.</p>
 </div>
 <div id="features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#features" class="anchor"></a>Features</h2>
-<p>This package is build on the principle that you should learn the theory once and than apply it to every other scenario. Meaning, if you understand the usage of one statistical test within this package, you won’t have a problem with any other function from the <code>inductive</code> package, ever. Behind the scenes it is not about reinventing the wheel but standing on the shoulder of giants instead. Nonetheless, dependencies will be reduced as much as it makes sense over time.</p>
-<p><strong>Consistent formula syntax.</strong> The core concept is the formula syntax first introduced by Wilkinson &amp; Rogers (1973), which is best explained on an ordinary regression model. One the left hand side of the formula is the dependent variable and on the right hand side are all the independent variables with potential influence on the dependent variable. Lets pretend one would like to investigate the influence of gender and age on the average manifestation of extroversion – one of the big five personality traits. The formula would look like this:</p>
+<p>This package is build on the principle that you should learn the theory once and than apply it to every other scenario. Meaning, if you understand the usage of one statistical test within this package, you won’t have a problem with any other function from the <code>inductive</code> package, ever. Behind the scenes it is not about reinventing the wheel but standing on the shoulder of giants. Nonetheless, dependencies will be reduced as much as it makes sense over time.</p>
+<p><strong>Consistent formula syntax.</strong> The core concept is the formula syntax first introduced by Wilkinson &amp; Rogers (1973), which is best explained on an ordinary regression model. One the left hand side of the formula is the dependent variable and on the right hand side are all the independent variables with potential influence on the dependent variable. Lets pretend one would like to investigate the influence of gender and age on the average manifestation of <em>extraversion</em> – one of the big five personality traits. The formula would look like this:</p>
 <p><code>Extraversion ~ Age + Gender</code></p>
-<p>The <code>lme4</code> package first introduced an extension of this formula syntax by integrating random effects within bracket. For a simple repeated measure, one would write</p>
-<p><code>Extraversion ~ Age + Gender + (1 | Person)</code>.</p>
-<p>This package adapts those to mechanism and expands them to tests, where only two vectors are compared to each other. Suppose you want to conduct Student’s t-test between extroversion and neuroticism (another personality trait). Up until now, you would have to pass those to variables as vectors. Now you can pass them with the formula, which is treated as <code>x ~ y</code> compared to documentation the <code>stats</code> package where <code>x</code> and <code>y</code> can be either vectors or a grouping variable.</p>
+<p>To include random effect to the model, the <code>lme4</code> package introduced an extension of this formula syntax by integrating those random effects within round brackets. For a simple repeated measure design without any additional within-subject factors, one would write</p>
+<p><code>Extraversion ~ Age + Gender + (1 | Person)</code>,</p>
+<p>where <code>Person</code> is some kind of identification of the subject. This package adapts those two mechanism and expands them to tests, where only two vectors are compared to each other. Suppose you want to conduct Student’s t-test between extroversion and neuroticism (another personality trait). Up until now, you would have to pass those to variables as vectors. Now you can pass them with the formula syntax, which treats the former <code>x</code> and <code>y</code> formula (e.g. see <code><a href="https://rdrr.io/r/stats/t.test.html">stats::t.test()</a></code>) as <code>x ~ y</code>.</p>
 <p><code>Extraversion ~ Neuroticism</code></p>
-<p><strong>Pipe-friendly.</strong> The first argument of each function is the <code>data</code> argument, which means that the pipe-operator can pass the data invisible to the function without the need to add this argument manually.</p>
+<p>To provide a certain degree of flexibility there are also alternative ways to input the variables (see <a href="https://j3ypi.github.io/inductive/articles/getstarted.html">Get started</a>).</p>
+<p><strong>Pipe-friendly.</strong> The first argument of each function is the <code>data</code> argument, which means that the pipe-operator from the <a href="https://magrittr.tidyverse.org/">margrittr</a> package is able to pass the data invisibly to the function without the need to add this argument explicitly. For the example of Student’s t-test mentioned above, one could write</p>
 <pre class="{r}"><code>big_five %&gt;%
-   sta_t(Extraversion ~ Neuroticism)</code></pre>
-<p><strong>Modified print method.</strong> Many additional statistical R packages adapt the approach of propriety software like SPSS where they return a lot of tables you didn’t explicitly asked for, which makes it hard for beginners to understand which table they where looking for and impossible to use the results for continuous calculations. This package takes another approach. The functions only return the result you explicitly asked for. Though the <code>broom</code> package follows a similar philosophy it has two disadvantages for beginner-friendly scientific reporting. First, the output is two generic, which means that every estimate is just called <code>estimate</code> and second, the output is printed as a <code>tibble</code>. While <code>tibbles</code> are an awesome invention for most task, it is not optimal if you want to report exact (not rounded) numbers. Another problem is the scientific notation which cannot be disabled. Even for more experiences researchers <code>3.1E-10</code> .. is more difficult to read than <code>0.31</code>. Additionally, negative numbers (<code>3.1E-10</code>) are highlighted in red indicating for example negative <em>p</em>-values which might be confusing for students. By default the functions of the <code>inductive</code> package return a list with the results and the object created by the base R functions they are wrapped around. But when you print the result only the result table is displayed. If you don’t need the object’s complete result list you can easy disable to output the object (<code>obj = FALSE</code>).</p>
-<p><strong>Prefix for auto-completion.</strong> Who doesn’t know how it is to look up the name of an <code>stats</code> function in R for the hundredths time, because the names are inconsistent? The <code>inductive</code> package provides a prefix <code>sta_*</code> for all functions making it particularly suited for auto-completion and suggestion within RStudio. The prefix leans on the <code>stat_*</code> prefix from the <code>ggplot2</code> package where it’s an acronym for <strong>sta</strong>tistical <strong>t</strong>ransformation. Derived from that</p>
+   sta_t(Extraversion ~ Neuroticism, var.equal = TRUE)</code></pre>
+<p>to get the results returned. This feature makes it particularly easy to integrate those statistical tests with the <a href="https://www.tidyverse.org/">tidyverse</a>. Actually, up until now statistical tests where the last missing piece for a tidy introduction to R for scientists which is completely consistent. Thus, beginners do not have to learn about data structures like vectors and the dollar- and <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> operator to access those vectors from <code>data.frames</code> anymore. Instead they can concentrate on the understanding of the principles which are consistent for all function within the <code>tidyverse</code>.</p>
+<p><strong>Modified print method.</strong> Many additional statistical R packages adapt the approach of propriety software like SPSS where they return a lot of tables you didn’t explicitly asked for, which makes it hard for beginners to understand which table they where looking for and impossible to use the results for continuous calculations. This package takes another approach. The functions only return the result you explicitly asked for. Though the <code>broom</code> package follows a similar philosophy it has two disadvantages for beginner-friendly scientific reporting. First, the output is too generic, which means for example that every estimate is just called <code>estimate</code> and second, the output is printed as a <code>tibble</code>. While <code>tibbles</code> are an awesome invention for most task, it is not optimal if you want to report exact (not rounded) numbers. Another problem is the scientific notation which cannot be disabled. Even for more experiences researchers <code>5.72e-4</code> is more difficult to read than <code>0.000572</code>. Furthermore, any numbers containing a minus sign are highlighted in red indicating for example negative <em>p</em>-values which can be confusing for students. By default the functions of the <code>inductive</code> package return a list with the results and the object created by the base R functions they are wrapped around. But when you print the result only the result table is displayed. This is achieved by a customization of the generic S3 print method for class <code>stats</code> objects returned by the function in this package. If you don’t need the complete result list you can easy disable to output the object with <code>obj = FALSE</code>.</p>
+<p><strong>Prefix for auto-completion.</strong> Who doesn’t know how it is to look up the name of an <code>stats</code> function in R for the hundredths time, because the names are inconsistent? The <code>inductive</code> package provides the prefix <code>sta_*</code> for all statistical tests making it particularly suited for auto-completion and suggestion within RStudio. The prefix leans on the <code>stat_*</code> prefix from the <code>ggplot2</code> package where it’s an acronym for <strong>sta</strong>tistical <strong>t</strong>ransformation. Derived from that one could say that <code>sta_*</code> stand for <strong>sta</strong>tistical. The prefix is not <code>test_</code> because it is already in use in the <a href="https://testthat.r-lib.org/">testthat</a> package.</p>
 <p><strong>Adapted documentation.</strong> The documentation is expanded and adapted compared to their base R counterparts, making it easier to understand their arguments and how they can be used in practice.</p>
-<p><strong>All in one.</strong> The resources for the most commonly used functions are now in one place. No need to look it up every time with your favorite search engine. Just type in <code>sta</code> to select the functions you want to use.</p>
-<p><strong>New but familiar.</strong> Names and arguments are the same as in base R.</p>
+<p><strong>All in one.</strong> The resources for the most commonly used statistical tests are now in one place. No need to look it up every time on some site with your favorite search engine. Just type in the prefix <code>sta</code> to select the function you want to use.</p>
+<p><strong>New but familiar.</strong> Arguments are the same as in base R. This means that everything that works with functions from the <code>stats</code> package work with functions from the <code>inductive</code> package. Even the names are similar with the little tweak to turn the parts around so that <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> becomes <code><a href="reference/sta_t.html">sta_t()</a></code> or <code><a href="https://rdrr.io/r/stats/var.test.html">var.test()</a></code> is now called <code><a href="reference/sta_var.html">sta_var()</a></code>.</p>
 </div>
 <div id="roadmap" class="section level2">
 <h2 class="hasAnchor">
 <a href="#roadmap" class="anchor"></a>Roadmap</h2>
-<p>If you consider contributing please get in touch.</p>
 <ul>
 <li>
 <input type="checkbox" disabled checked>
@@ -122,7 +123,7 @@ t-test and Welch-test: <code><a href="reference/sta_t.html">sta_t()</a></code>
 </li>
 <li>
 <input type="checkbox" disabled checked>
-Wilcoxon test: <code>sta_wilcoxon()</code>
+Wilcoxon test: <code><a href="reference/sta_wilcox.html">sta_wilcox()</a></code>
 </li>
 <li>
 <input type="checkbox" disabled checked>
@@ -171,15 +172,24 @@ Levene test: <code>sta_levene()</code>
 <li>
 <input type="checkbox" disabled>
 Reduce internal dependencies</li>
+<li>
+<input type="checkbox" disabled>
+Contingency table: <code>cont_table()</code>
+</li>
+<li>
+<input type="checkbox" disabled>
+Modify print method: <code>modify_printing()</code>
+</li>
 </ul>
 </div>
 <div id="reference" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reference" class="anchor"></a>Reference</h2>
 <p>Bache, S.M. and Wickham, H. (2014). magrittr: A Forward-Pipe Operator for R. R package version 1.5. <a href="https://CRAN.R-project.org/package=magrittr" class="uri">https://CRAN.R-project.org/package=magrittr</a></p>
+<p>Bates, D., Maechler M., Bolker B. and Walker S. (2015). Fitting Linear Mixed-Effects Models Using lme4. Journal of Statistical Software, 67(1), 1-48. <a href="doi:10.18637/jss.v067.i01" class="uri">doi:10.18637/jss.v067.i01</a>.</p>
 <p>Robinson, D. and Hayes, A. (2019). broom: Convert Statistical Analysis Objects into Tidy Tibbles. R package version 0.5.2. <a href="https://CRAN.R-project.org/package=broom" class="uri">https://CRAN.R-project.org/package=broom</a></p>
 <p>Wickham, H. (2017). tidyverse: Easily Install and Load the ‘Tidyverse’. R package version 1.2.1. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a></p>
-<p>Wilkinson, G., &amp; Rogers, C. (1973). Symbolic Description of Factorial Models for Analysis of Variance. <em>Journal of the Royal Statistical Society. Series C (Applied Statistics),</em> <em>22</em>(3), 392-399. <a href="doi:10.2307/2346786" class="uri">doi:10.2307/2346786</a></p>
+<p>Wilkinson, G., &amp; Rogers, C. (1973). Symbolic Description of Factorial Models for Analysis of Variance. <em>Journal of the Royal Statistical Society. Series C (Applied Statistics),</em> <em>22</em>(3), 392-399. <a href="doi:10.2307/2346786" class="uri">doi:10.2307/2346786</a>.</p>
 </div>
 
   </div>

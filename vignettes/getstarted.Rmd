@@ -24,7 +24,7 @@ library(magrittr)
 library(purrr)
 ```
 
-Within the `inductive` package there’s a data set called [big_five](https://j3ypi.github.io/inductive/reference/big_five.html).
+Within the `inductive` package there is a data set called [big_five](https://j3ypi.github.io/inductive/reference/big_five.html), which can be loaded with the `data()` function without further arguments when the `library()` call was executed before.
 
 ```{r}
 data(big_five)
@@ -36,7 +36,7 @@ big_five %>%
   knitr::kable() 
 ```
 
-There three different ways to conduct Student’s t-Test in the inductive package. Note that all the information provided for the t-test can be applied to any other function from the package. Lets say we want to investigate whether there is a difference between the average degree of the *big5* personality trait extraversion compared to neuroticism. The recommend way of passing those columns to the function is the formula syntax, which is well-known from base R functions like `lm()` or `aov()`. Up until now you could only use the formula syntax for a t-test when you have one grouping variable like gender. To conduct a t-test and not a Welch test one has to set the `var.equal` argument to `TRUE`.  
+There are three different ways to conduct Student’s t-Test in the inductive package. Note that all the information provided for the t-test can be applied to any other function from the package. Lets say we want to investigate whether there is a difference between the average degree of the big five personality trait *extraversion* compared to *neuroticism*. The recommend way of passing those columns to the function is the formula syntax, which is well-known from base R functions within the `stats` package like `lm()` or `aov()`. Up until now you could only use the formula syntax for a t-test when you pass a grouping variable like gender as a second argument. Now it can be used with two metrical columns as well. All arguments from `stats::t.test()` can be passed to `sta_t()`. To conduct a t-test and not a Welch test one has to set the `var.equal` argument to `TRUE`.  
 
 ```{r}
 big_five %>% 
@@ -57,43 +57,46 @@ big_five %>%
   sta_t(x = Extraversion, y = Neuroticism) 
 ```
 
-Even the way of passing the arguments without a data argument to the function (e.g. with the dollar-operator) works exactly like it does for the corresponding base R functions from the `stats` package `t.test()`.
+Even the way of passing the arguments without a data argument as a vector to the function (e.g. with the dollar-operator) works exactly like it does for the corresponding base R functions from the `stats` package.
 
 ```{r, eval=FALSE}
 sta_t(x = big_five$Extraversion, y = big_five$Neuroticism)
 ```
 
+Note that the formula syntax will always be preferred. If the `data` is provided alongside the `formula` argument, `x` and `y` are ignored even when they are passed to function additionally. Other combinations which are not shown above will result in an error. 
+
 ## The `obj` argument
 
-The only thing you see when you conduct a test is the clean result table. But behind the scenes all functions return a list with two elements by default. To illustrate that lets save the results from above to the variable `res`.  
+The only thing you see when you conduct a statistical test in the `inductive` package is a clean result table. But behind the scenes all functions return a list with two elements by default. To illustrate that lets save the results from above to the variable `res`.  
 
 ```{r}
 res <- big_five %>% 
-  sta_t(Extraversion ~ Neuroticism)
+  sta_t(Extraversion ~ Neuroticism, var.equal = TRUE)
 ```
 
-No we can inspect those two elements with `purrr`'s function `pluck()` where one could either pass numbers (element `1` or `2`) or the name of the list elements (`result`, `obj`). 
+Now we can inspect those two elements with `purrr`'s function `pluck()` where one could either pass numbers (element `1` or `2`) or the name of the list elements (`result`, `obj`). 
 
 ```{r}
 res %>% 
   pluck("result")
 ```
 
-Of course you could also use the dollar-operator or `[[` to access those list elements. As you see the object is the usual result from `t.test.()`. There are certain scenarios when the default output of the `obj` element comes in handy. For example to conduct post-hoc tests after the calculation of an ANOVA or when you want to return additional fit indices like information criteria from you linear model with `broom::glance()`.  
+Of course one could also use the dollar-operator or `[[` to access those list elements. The first element `result` contains the `data.frame` and the second element `obj` the object returned by the function from the `stats` package the function is wrapped around (e.g. `stats::t.test()`). 
 
 ```{r}
 res %>% 
   pluck("obj")
 ```
 
-To avoid this behavior and to save the result table exclusively one would only need to set the `obj` argument to `FALSE`, which might come in handy when working with `purrr::map` and `tidyr::nest()` or if the objects are extremely large.
+There are certain scenarios when the default output of the `obj` element comes in handy. For example to conduct post-hoc tests after the calculation of an ANOVA or when you want to return additional fit indices like information criteria from you linear model with `broom::glance()`. To avoid this behavior and to save only the result table, one would need to set the `obj` argument to `FALSE`, which is practical e.g. when working with `tidyr::nest()` and `purrr::map`, if the objects are extremely large or if you want export the result table to LaTeX with `xtable::xtable()` or to Word with [rMarkdown](https://rmarkdown.rstudio.com/).
 
 ```{r}
 big_five %>% 
-  sta_t(Extraversion ~ Neuroticism, obj = FALSE)
+  sta_t(Extraversion ~ Neuroticism, obj = FALSE) %>% 
+  class()
 ```
 
-
+All functions return the result with an additional `stats` class, which is only necessary for the adapted generic print method and can be ignored otherwise. 
 
 
 
