@@ -33,7 +33,7 @@ sta_fisher(
 
 \item{hybridPars}{a numeric vector of length 3, by default describing “Cochran's conditions” for the validity of the chisquare approximation, see ‘Details’.}
 
-\item{control}{a list with named components for low level algorithm control. At present the only one used is "mult", a positive integer ≥ 2 with default 30 used only for larger than 2 by 2 tables. This says how many times as much space should be allocated to paths as to keys: see file ‘fexact.c’ in the sources of this package.}
+\item{control}{a list with named components for low level algorithm control. At present the only one used is "mult", a positive integer >= 2 with default 30 used only for larger than 2 by 2 tables. This says how many times as much space should be allocated to paths as to keys: see file ‘fexact.c’ in the sources of this package.}
 
 \item{or}{the hypothesized odds ratio. Only used in the 2 by 2 case.}
 
