@@ -10,10 +10,10 @@ jobs:
   include:
     before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
     deploy:
-      github-token: $GITHUB_PAT
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github()'
       skip_cleanup: true
+      github-token: $GITHUB_PAT
 
 env:
   global:

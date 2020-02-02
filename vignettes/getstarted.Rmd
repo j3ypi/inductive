@@ -81,14 +81,14 @@ res %>%
   pluck("result")
 ```
 
-Of course one could also use the dollar-operator or `[[` to access those list elements. The first element `result` contains the `data.frame` and the second element `obj` the object returned by the function from the `stats` package the function is wrapped around (e.g. `stats::t.test()`). 
+Of course, one could also use the dollar-operator or `[[` to access those list elements. The first element `result` contains the `data.frame` and the second element `obj` the object returned by the function from the `stats` package the function is wrapped around (e.g. `stats::t.test()`). 
 
 ```{r}
 res %>% 
   pluck("obj")
 ```
 
-There are certain scenarios when the default output of the `obj` element comes in handy. For example to conduct post-hoc tests after the calculation of an ANOVA or when you want to return additional fit indices like information criteria from you linear model with `broom::glance()`. To avoid this behavior and to save only the result table, one would need to set the `obj` argument to `FALSE`, which is practical e.g. when working with `tidyr::nest()` and `purrr::map`, if the objects are extremely large or if you want export the result table to LaTeX with `xtable::xtable()` or to Word with [rMarkdown](https://rmarkdown.rstudio.com/).
+There are certain scenarios where the default output of the `obj` element comes in handy. For example to conduct post-hoc tests after the calculation of an ANOVA or when you want to return additional fit indices like information criteria from you linear model with `broom::glance()`. To avoid this behavior and to save only the result table, one would need to set the `obj` argument to `FALSE`, which is practical e.g. when working with `tidyr::nest()` and `purrr::map`, if the objects are extremely large or if you want export the result table to LaTeX with `xtable::xtable()` or to Word with [rMarkdown](https://rmarkdown.rstudio.com/).
 
 ```{r}
 big_five %>% 
